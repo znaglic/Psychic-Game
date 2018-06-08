@@ -1,1 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>The Psychic Game</title>
+</head>
+
+<body>
+
+  <p id="Wins:"></p>
+  <p id="Losses:"></p>
+  <p id="Guesses Left:"></p>
+  <p id="Your Guesses so far:"></p>
+
+  <script>
+
+  
+ var questions = [
+      { q: "Guess what letter I'm thinking of", a: "z" },
+     
+    ];
+    var score = 0;
+    var questionIndex = 10;
+
+    function renderQuestion() {
+
+      if (questionIndex <= (questions.length - 1)) {
+        document.querySelector("#question").innerHTML = questions[questionIndex].q;
+      }
+      else {
+        document.querySelector("#question").innerHTML = "Game Over!";
+        document.querySelector("#score").innerHTML = "Final Score: " + score + " out of " + questions.length;
+      }
+    }
+    function updateScore() {
+      document.querySelector("#score").innerHTML = "Score: " + score;
+    }
+
+    renderQuestion();
+    updateScore();
+
+    document.onkeyup = function(event) {
+
+      if (questionIndex === questions.length) {
+        return;
+      }
+      var userInput = event.key.toLowerCase();
+
+      if (userInput === "z")
+
+        if (userInput === questions[questionIndex].a) {
+          alert("Correct!");
+          score++;
+          updateScore();
+        }
+        else {
+          alert("Wrong!");
+        }
+        questionIndex++;
+        renderQuestion();
+
+      }
+
+  </script>
+
+</body>
+
+</html>
+
 
